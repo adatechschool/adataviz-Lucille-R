@@ -1,6 +1,6 @@
 // fetch + manipulation du DOM (pas testé)
 // Je récupère ma div cards :
-const cards = document.querySelector(".cards");
+const cardsHotels = document.querySelector(".cards-hotels");
 
 // Je déclare ma fonction async :
 const chargerDonnees = async () => {
