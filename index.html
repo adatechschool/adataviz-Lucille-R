@@ -17,6 +17,50 @@
       
     </header> 
 
+    <!--===============FILTRES & RECHERCHE================-->
+    <section class="filtres-recherche">
+
+      <!-------------------------Filtres---------------------------->
+
+      <div class="filtres">
+        
+        <!--------Filtre VILLE commune---------->
+        <select name="ville" id="ville">
+          <option value="" selected disabled>VILLE</option> <!--selected disabled (=sélectionné et désactivé) sélectionne par défaut (car "titre" du select) et empêche l'utilisateur de la sélectionner -->
+          <option value="TOURS">TOURS</option>
+          <option value="CHAMBRAY-LES-TOURS">CHAMBRAY-LES-TOURS</option>
+          <option value="LA RICHE">LA RICHE</option>
+        </select>
+
+        <!--------Filtre ETOILE categorie_classement ---------->
+        <select name="etoiles" id="etoiles">
+          <option value="" selected disabled>ETOILES</option>
+          <option value="1 étoile">1 étoile</option>
+          <option value="2 étoiles">2 étoiles</option>
+          <option value="3 étoiles">3 étoiles</option>
+          <option value="4 étoiles">4 étoiles</option>
+          <option value="5 étoiles">5 étoiles</option>
+        </select>
+
+        <!--------Filtre LANGUES PARLEES langues_parlees ---------->
+        <select name="langue" id="langue">
+          <option value="" selected disabled>LANGUES</option>
+          <option value="Français">Français</option>
+          <option value="Anglais">Anglais</option>
+          <option value="Allemand">Allemand</option>
+          <option value="Espagnol">Espagnol</option>
+        </select>
+
+      </div>
+
+      <!-------------------------Recherche---------------------------->
+      <div class="recherche">
+        <input type="search" placeholder="Recherche...">
+      </div>
+      
+    </section>
+
+
     <!--======================MAIN========================-->
     <main>
       <!--------------------- Insertion des cards------------------->
