@@ -86,7 +86,7 @@ main {
 	gap: 20px;
 }
 
-.card {
+.card, p {
 	background-color: var(--white);
 	color: var(--secondary);
 	text-align: center;

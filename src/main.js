@@ -1,7 +1,8 @@
 // fetch + manipulation du DOM (pas testé)
 
-// Je récupère ma section cards-hotels :
+// Récupération des sections/classes pour manipulation du DOM :
 const cardsHotels = document.querySelector(".cards-hotels");
+const totalHotels = document.querySelector(".total-hotels");
 
 // -------- Chargement des données, qui retourne les donneesApi -------- 
 // Je déclare ma fonction async :
@@ -24,6 +25,8 @@ const donneesChargees = async () => {
 
 // -------- Utilisation des données de l'API pour création des cards d'hôtels -------- 
 const afficherHotels = (donneesHotels) => {
+	// Affichage du nombre total d'hôtel : L'élément' total-hotels est déjà sélectionnée tout en haut, donc je modifie mon texte :
+	totalHotels.textContent = `Nombre d'hôtels : ${donneesHotels.results.length}`;
 
 	// Je parcours l'objet donneesHotels :
 	donneesHotels.results.forEach((hotel) => {
@@ -54,10 +57,12 @@ const afficherHotels = (donneesHotels) => {
 
 		// 5- Je crée un <a> pour y mettre le site de l'hôtel :
 		const aSite = document.createElement("a");
+		// Je récupère proprement site_web (je n'en garde qu'un seul quand il y en a plusieurs) :
+		const siteWeb = hotel.site_web.split(" ; ")[0];
 		// Je lui affecte un attribut href car c'est un lien vers le site Internet de l'hôtel :
-		aSite.setAttribute("href", "hotel.site_web");
-		// ainsi que son texte :
-		aSite.textContent = hotel.site_web;
+		aSite.setAttribute("href", siteWeb);
+		// Je lui affecte un texte :
+		aSite.textContent = "Site web de l'hôtel";
 		// Je l'insère dans le conteneur divCard :
 		divCard.appendChild(aSite);
 
