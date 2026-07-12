@@ -4,12 +4,15 @@
 const cardsHotels = document.querySelector(".cards-hotels");
 const totalHotels = document.querySelector(".total-hotels");
 
+// Importation des fonctions utils.js :
+import { recupererSiteWeb } from "./utils.js";
+
 // -------- Chargement des données, qui retourne les donneesApi -------- 
 // Je déclare ma fonction async :
 const donneesChargees = async () => {
 	try {
 		// Je récupère les données de l'API grâce à fetch :
-		const response = await fetch("https://data.tours-metropole.fr/api/explore/v2.1/catalog/datasets/hotels-en-region-centre-val-de-loire/records?limit=20");
+		const response = await fetch("https://data.tours-metropole.fr/api/explore/v2.1/catalog/datasets/hotels-en-region-centre-val-de-loire/records?limit=60");
 
 		// Je transforme les données récupérées en JSON :
 		const donneesApi = await response.json();
@@ -55,16 +58,24 @@ const afficherHotels = (donneesHotels) => {
 		// Je l'insère dans le conteneur divCard :
 		divCard.appendChild(pCommune);
 
-		// 5- Je crée un <a> pour y mettre le site de l'hôtel :
-		const aSite = document.createElement("a");
-		// Je récupère proprement site_web (je n'en garde qu'un seul quand il y en a plusieurs) :
-		const siteWeb = hotel.site_web.split(" ; ")[0];
-		// Je lui affecte un attribut href car c'est un lien vers le site Internet de l'hôtel :
-		aSite.setAttribute("href", siteWeb);
-		// Je lui affecte un texte :
-		aSite.textContent = "Site web de l'hôtel";
-		// Je l'insère dans le conteneur divCard :
-		divCard.appendChild(aSite);
+		// 5- Site de l'hôtel : 
+		// Si aucun site => Création d'un <p>
+		// Sinon => Création d'un <a> pour y mettre le site de l'hôtel :
+		// Variable siteWeb depuis recupererSiteWeb :
+		const siteWeb = recupererSiteWeb(hotel.site_web);
+		if (siteWeb === null) {
+			const pSite = document.createElement("p");
+			pSite.textContent = "Pas de site web disponible";
+			divCard.appendChild(pSite);
+		} else {
+			const aSite = document.createElement("a");
+			// Je lui affecte un attribut href car c'est un lien vers le site Internet de l'hôtel :
+			aSite.setAttribute("href", siteWeb);
+			// Je lui affecte un texte :
+			aSite.textContent = "Site web de l'hôtel";
+			// Je l'insère dans le conteneur divCard :
+			divCard.appendChild(aSite);
+		}
 
 	})
 }
