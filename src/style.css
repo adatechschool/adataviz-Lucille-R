@@ -81,14 +81,12 @@ main {
 }
 
 .cards-hotels {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
 }
 
-.card {
+.card, p {
 	background-color: var(--white);
 	color: var(--secondary);
 	text-align: center;
